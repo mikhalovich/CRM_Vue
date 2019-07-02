@@ -5,7 +5,7 @@
         <a href="#" @click.prevent="$emit('open-side-bar')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{ date }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -40,7 +40,16 @@
 </template>
 
 <script>
+
+import { setInterval } from 'timers';
+
 export default {
+  data: () => ({
+    date: new Date(),
+    interval: null,
+    dropdown: null,
+  }),
+
   methods: {
     logout() {
       this.$router.push('/login?message=logout');
@@ -48,10 +57,22 @@ export default {
   },
 
   mounted() {
+    this.interval = setInterval(() => {
+      this.date = new Date();
+    }, 1000);
+
     // eslint-disable-next-line
-    M.Dropdown.init(this.$refs.dropdown, {
+    this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false,
     });
+  },
+
+  beforeDestroy() {
+    clearInterval(this.interval);
+
+    if ( this.dropdown && this.dropdown.destroy ) {
+      this.dropdown.destroy()
+    }
   },
 };
 </script>
