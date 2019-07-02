@@ -5,7 +5,7 @@
         <a href="#" @click.prevent="$emit('open-side-bar')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{ date }}</span>
+        <span class="black-text">{{ date | date('datetime') }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -70,8 +70,8 @@ export default {
   beforeDestroy() {
     clearInterval(this.interval);
 
-    if ( this.dropdown && this.dropdown.destroy ) {
-      this.dropdown.destroy()
+    if (this.dropdown && this.dropdown.destroy) {
+      this.dropdown.destroy();
     }
   },
 };
