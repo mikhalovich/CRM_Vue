@@ -28,7 +28,7 @@
         <input
           id="password"
           type="password"
-          v-model.trim="password"
+          v-model="password"
           :class="{invalid: ($v.password.$dirty && !$v.password.required)
             || ($v.password.$dirty && !$v.password.minLength)}"
         >
@@ -85,11 +85,11 @@ export default {
         this.$v.$touch();
         return;
       }
-
+      // eslint-disable-next-line
       const formData = {
         email: this.email,
         password: this.password,
-      }
+      };
 
       this.$router.push('/');
     },
