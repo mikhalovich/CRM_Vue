@@ -108,7 +108,7 @@ export default {
   },
 
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         // eslint-disable-next-line
@@ -121,9 +121,11 @@ export default {
         name: this.name,
       };
 
-      this.$router.push('/');
+      try {
+        await this.$store.dispatch('register', formData);
+        this.$router.push('/');
+      } catch (e) {}
     },
-
   },
 };
 </script>
