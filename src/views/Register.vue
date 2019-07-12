@@ -124,6 +124,7 @@ export default {
       try {
         await this.$store.dispatch('register', formData);
         this.$router.push('/');
+        // eslint-disable-next-line
       } catch (e) {}
     },
   },
