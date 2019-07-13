@@ -8,15 +8,15 @@
       <form @submit.prevent="submitHandler">
         <div class="input-field">
           <input
-            id="name"
-            type="text"
-            v-model="title"
-            :class="{invalid: $v.title.$dirty && !$v.title.required}"
-          />
+              id="name"
+              type="text"
+              v-model="title"
+              :class="{invalid: $v.title.$dirty && !$v.title.required}"
+          >
           <label for="name">Название</label>
           <span
-            class="helper-text invalid"
             v-if="$v.title.$dirty && !$v.title.required"
+            class="helper-text invalid"
           >
             Введите название категории
           </span>
@@ -24,17 +24,17 @@
 
         <div class="input-field">
           <input
-            id="limit"
-            type="number"
-            v-model="limit"
-            :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
-          />
+              id="limit"
+              type="number"
+              v-model.number="limit"
+              :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
+          >
           <label for="limit">Лимит</label>
           <span
-            class="helper-text invalid"
             v-if="$v.limit.$dirty && !$v.limit.minValue"
+            class="helper-text invalid"
           >
-            Минимальное значение {{ $v.limit.$params.minValue.min }}
+            Минимальная значение {{$v.limit.$params.minValue.min}}
           </span>
         </div>
 
@@ -55,24 +55,33 @@ export default {
     title: '',
     limit: 100,
   }),
-
   validations: {
     title: { required },
     limit: { minValue: minValue(100) },
   },
-
   mounted() {
     // eslint-disable-next-line
     M.updateTextFields();
   },
-
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         // eslint-disable-next-line
         return;
       }
+
+      try {
+        const category = await this.$store.dispatch('createCategory', {
+          title: this.title,
+          limit: this.limit,
+        });
+        this.title = '';
+        this.limit = 100;
+        this.$v.$reset();
+        this.$message('Категория была создана');
+        this.$emit('created', category);
+      } catch (e) {}
     },
   },
 };
