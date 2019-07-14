@@ -81,6 +81,7 @@ export default {
         this.$v.$reset();
         this.$message('Категория была создана');
         this.$emit('created', category);
+        // eslint-disable-next-line
       } catch (e) {}
     },
   },
