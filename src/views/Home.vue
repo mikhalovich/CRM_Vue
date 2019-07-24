@@ -27,6 +27,12 @@ import HomeBill from '@/components/HomeBill.vue';
 import HomeCurrency from '@/components/HomeCurrency.vue';
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('Menu_Bill'),
+    };
+  },
+
   name: 'home',
 
   data: () => ({

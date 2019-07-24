@@ -35,6 +35,12 @@
 
 <script>
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('Detail_Title'),
+    };
+  },
+
   name: 'detail',
 
   data: () => ({

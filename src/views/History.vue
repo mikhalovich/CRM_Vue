@@ -44,6 +44,12 @@ import paginationMixin from '@/mixins/pagination.mixins';
 import HistoryTable from '@/components/HistoryTable.vue';
 
 export default {
+  metaInfo() {
+    return {
+      title: this.$title('History_Title'),
+    };
+  },
+
   name: 'history',
 
   extends: Pie,
