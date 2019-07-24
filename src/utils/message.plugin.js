@@ -8,7 +8,7 @@ export default {
 
     Vue.prototype.$error = (html) => {
       // eslint-disable-next-line
-      M.toast({ html: `[Ошибка]: ${html}` });
+      M.toast({ html: `[Error]: ${html}` });
     };
   },
 };
