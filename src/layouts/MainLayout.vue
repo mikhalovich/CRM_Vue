@@ -18,7 +18,8 @@
         <router-link
           class="btn-floating btn-large blue"
           to="/record"
-          v-tooltip="'CreateNewRecord'"
+          v-tooltip="createNewRecord"
+          data-position="left"
         >
           <i class="large material-icons">add</i>
         </router-link>
@@ -32,6 +33,7 @@
 import Navbar from '@/components/app/Navbar.vue';
 import Sidebar from '@/components/app/Sidebar.vue';
 import messages from '@/utils/messages';
+import localizeFilter from '@/filters/localize.filter';
 
 export default {
   name: 'main-layout',
@@ -61,6 +63,10 @@ export default {
 
     locale() {
       return this.$store.getters.info.locale;
+    },
+
+    createNewRecord() {
+      return `${localizeFilter('CreateNewRecord')}`;
     },
   },
 
