@@ -29,7 +29,7 @@
         </td>
         <td>
           <button
-            v-tooltip="'Посмотреть запись'"
+            v-tooltip="openRecord"
             class="btn-small btn"
             @click="$router.push(`/detail/${record.id}`)"
           >
@@ -42,11 +42,19 @@
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter';
+
 export default {
   props: {
     records: {
       required: true,
       type: Array,
+    },
+  },
+
+  computed: {
+    openRecord() {
+      return `${localizeFilter('OpenRecord')}`;
     },
   },
 };
