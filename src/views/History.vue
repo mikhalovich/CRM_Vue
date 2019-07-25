@@ -42,6 +42,7 @@
 import { Pie } from 'vue-chartjs';
 import paginationMixin from '@/mixins/pagination.mixins';
 import HistoryTable from '@/components/HistoryTable.vue';
+import localizeFilter from '@/filters/localize.filter';
 
 export default {
   metaInfo() {
@@ -78,14 +79,14 @@ export default {
           ...record,
           categoryName: categories.find(c => c.id === record.categoryId).title,
           typeClass: record.type === 'income' ? 'green' : 'red',
-          typeText: record.type === 'income' ? 'Доход' : 'Расход',
+          typeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
         };
       }));
 
       this.renderChart({
         labels: categories.map(c => c.title),
         datasets: [{
-          label: 'Расходы по категориям',
+          label: localizeFilter('CostsForCategories'),
           // eslint-disable-next-line
           data: categories.map(c => {
             return this.records.reduce((total, r) => {
