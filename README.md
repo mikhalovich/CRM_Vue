@@ -22,7 +22,7 @@
 Last versions of Chrome, Firefox, Safari, Edge.
 
 ## Project structure
-SPA построенно с помощью Vue.js, Vuex ипользуется как локальное хранилище состояния, БД и хостинг на Firebase.
+SPA is build with Vue.js. Vuex is used for torage of local state. DB and Hosting on Firebase.
 
 ```bash
 ├── public
