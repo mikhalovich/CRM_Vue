@@ -60,6 +60,7 @@
 
 <script>
 import { required, minValue } from 'vuelidate/lib/validators';
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   props: {
@@ -95,7 +96,7 @@ export default {
           limit: this.limit,
         };
         await this.$store.dispatch('updateCategory', categoryData);
-        this.$message('Категория успешно обновлена');
+        this.$message(localizeFilter('Category_HasBeenUpdated'));
         this.$emit('updated', categoryData);
         // eslint-disable-next-line
       } catch (e) {}
