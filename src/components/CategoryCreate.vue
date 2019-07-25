@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m6">
+  <div class="col s12 m6 create-component">
     <div>
       <div class="page-subtitle">
         <h4>{{ 'Create' | localize }}</h4>
@@ -49,6 +49,7 @@
 
 <script>
 import { required, minValue } from 'vuelidate/lib/validators';
+import localizeFilter from '@/filters/localize.filter';
 
 export default {
   data: () => ({
@@ -79,7 +80,7 @@ export default {
         this.title = '';
         this.limit = 100;
         this.$v.$reset();
-        this.$message('Категория была создана');
+        this.$message(localizeFilter('Category_HasBeenCreated'));
         this.$emit('created', category);
         // eslint-disable-next-line
       } catch (e) {}
@@ -87,3 +88,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.create-component {
+  margin-bottom: 25px;
+}
+</style>
