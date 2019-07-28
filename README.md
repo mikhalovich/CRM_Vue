@@ -3,6 +3,8 @@
 
 # CRM for home accountancy. 
 
+> For test access use Login: admin@home-crm.test, password: 123456.
+
 > [Russian documentation](README-RU.md)
 
 ## With this CRM system you can:
